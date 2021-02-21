@@ -1,14 +1,15 @@
+
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Nayeem's Portfolio</title>
+    <title>Album example for Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
@@ -20,7 +21,7 @@
   </head>
 
   <body>
-    {% load static %}
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -39,7 +40,7 @@
                     <a class="nav-link" href="{% static 'BUPAdmitCard_46_4_1221100942.pdf' %}" >Resume</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'allblog' %}" >Blog</a>
+                    <a class="nav-link active" href="{% url 'allblog' %}" >Blog</a>
                   </li>
                 </ul>
             </div>
@@ -49,39 +50,23 @@
     </header>
 
     <main role="main">
-      <section class="jumbotron text-center">
-          <br>
-        <div class="container">
-          <h1 class="jumbotron-heading">Hi, I Am Nayeem!</h1>
-          <p class="lead text-muted">I love to build digital product!</p>
-          <p>
-            <img src="{% static 'Final-01.png' %}" height="200" width="200"/><br>
-            <a href="mailto:nayeemhossain.nh094@gmail.com" class="btn btn-primary my-2">Email Me!</a>
-          </p>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-           {% for job in jobs.all %}
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{{ job.image.url }}" >
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                </div>
-              </div>
-            </div>
-           {% endfor %}
-
-          </div>
-        </div>
-      </div>
-
+    <div class="container">
+    <h1 class="text-center pt-3">Welcome to nayeems blog!</h1>
+    <br>
+    <br>
+    <br>
+    <h5>Latest Post</h5>
+    <hr>
+    </div>
     </main>
-
+    {% for blog in blogs.all%}
+    <div class="container">
+    <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+    <h6>{{ blog.nice_pub_date}}</h6>
+    <img class=".img-fluid" src="{{ blog.image.url }}" height="200" width="200"/>
+    <p>{{ blog.summary }}</p>
+    </div>
+    {% endfor %}
     <footer class="text-muted">
       <div class="container">
         <p class="float-right">
